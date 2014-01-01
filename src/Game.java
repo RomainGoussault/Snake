@@ -1,11 +1,3 @@
-import java.net.Socket;
-import java.util.Arrays;
-import java.util.List;
-import java.util.TreeSet;
-
-
-
-
 public class Game implements Constants{
 
 	protected Snake s;
@@ -19,6 +11,7 @@ public class Game implements Constants{
 	protected boolean gameOver;
 	protected boolean restart;
 	protected int speed; //speed from 0 -100
+	protected BestScore bestScore;
 
 	Game()
 	{
@@ -33,20 +26,21 @@ public class Game implements Constants{
 		score = 0;
 		restart = false;
 		speed = INITIAL_SPEED;
-		WallCollision = false;
+		WallCollision = false; 
 		SnakeCollision = false;
+		bestScore = new BestScore();
 	}
 
 
 	void update() {
-		//Snake Moves	
+		
 		//We don't allow reverse moves for the snake
 		boolean lateral = (lastDir == Direction.RIGHT && dir == Direction.LEFT) || (dir == Direction.RIGHT && lastDir == Direction.LEFT) ;
 		boolean vertical = (lastDir == Direction.UP && dir == Direction.DOWN) || (dir == Direction.UP && lastDir == Direction.DOWN) ;
-		
+
 		if	(!gameOver)
 		{
-			
+
 			if (!lateral && !vertical )
 			{
 				SnakeCollision =   s.getBody().contains(s.getNextCell(dir));
@@ -68,23 +62,34 @@ public class Game implements Constants{
 				score ++;
 				s.size ++;
 				s.size ++;
+				s.size ++;
 				s.getBody().addFirst(s.getNextCell(dir));
 				s.getBody().addFirst(s.getNextCell(dir));
+				increaseSpeed();
 			}
-			
-			
+
+			//Snake - WallCollision
 			WallCollision = (s.getHead().getI() == 0 ||s.getHead().getJ() == 0 || s.getHead().getI() == (N_COLUMNS-1) || s.getHead().getJ() == (N_COLUMNS-1));
-	
+
 			gameOver = WallCollision || SnakeCollision;
-			
+
 		}
 		else if(restart)
 		{
-			 this.restart();
+			this.restart();
+		}
+		else
+		{
+		bestScore.update(score);	
 		}
 	}
 
-
+	public void increaseSpeed()
+	{
+		//speed = 100 - 1/speed ;
+		speed= (int) (speed + (float) (100/speed)) ;
+		
+	}
 
 	public void restart()
 	{
@@ -186,7 +191,7 @@ public class Game implements Constants{
 		this.speed = speed;
 	}
 
-	
+
 
 
 }
