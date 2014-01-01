@@ -112,6 +112,6 @@ public class GamePannel extends JPanel  implements Constants{
 
 
 	public static void main(String[] args){
-		new SnakeGame();
+		new Main();
 	}
 }

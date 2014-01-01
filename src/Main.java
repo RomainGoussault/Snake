@@ -1,22 +1,16 @@
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
 
-public class SnakeGame extends JFrame implements Constants{
+@SuppressWarnings("serial")
+public class Main extends JFrame implements Constants{
 
 	final protected GamePannel p;
 	protected Game g;
 
 
-	public SnakeGame()
+	public Main()
 	{   
 
 		g = new Game();
@@ -102,7 +96,7 @@ public class SnakeGame extends JFrame implements Constants{
 			}
 			if (event.getKeyCode() == 88) //X
 			{
-				SnakeGame.this.dispose();
+				Main.this.dispose();
 			}
 		}
 
@@ -116,6 +110,6 @@ public class SnakeGame extends JFrame implements Constants{
 
 
 	public static void main(String[] args){
-		new SnakeGame();
+		new Main();
 	}
 }
