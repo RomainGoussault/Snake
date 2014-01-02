@@ -1,17 +1,17 @@
 public class Game implements Constants{
 
-	protected Snake s;
-	protected Direction dir;
-	protected Direction lastDir;
-	protected Meat m;
-	protected boolean MeatCollision;
-	protected boolean WallCollision;
-	protected boolean SnakeCollision;
-	protected int score;
-	protected boolean gameOver;
-	protected boolean restart;
-	protected int speed; //speed from 0 -100
-	protected BestScore bestScore;
+	private Snake s;
+	private Direction dir;
+	private Direction lastDir;
+	private Meat m;
+	private boolean meatCollision;
+	private boolean wallCollision;
+	private boolean snakeCollision;
+	private int score;
+	private boolean gameOver;
+	private boolean restart;
+	private int speed; //speed from 0 -100
+	private BestScoreManager bestScore;
 
 	Game()
 	{
@@ -21,14 +21,14 @@ public class Game implements Constants{
 
 		dir = Direction.UP;
 		lastDir = dir;
-		MeatCollision = false;
+		meatCollision = false;
 		gameOver = false;
 		score = 0;
 		restart = false;
 		speed = INITIAL_SPEED;
-		WallCollision = false; 
-		SnakeCollision = false;
-		bestScore = new BestScore();
+		wallCollision = false; 
+		snakeCollision = false;
+		bestScore = new BestScoreManager();
 	}
 
 
@@ -43,7 +43,7 @@ public class Game implements Constants{
 
 			if (!lateral && !vertical )
 			{
-				SnakeCollision =   s.getBody().contains(s.getNextCell(dir));
+				snakeCollision =   s.getBody().contains(s.getNextCell(dir));
 				s.move(dir);
 				lastDir = dir;
 			}
@@ -54,24 +54,24 @@ public class Game implements Constants{
 			}	
 
 
-			//Snake - Meat MeatCollisions
-			MeatCollision = s.getHead().getI() == m.getI() && s.getHead().getJ() == m.getJ();
-			if(MeatCollision)
+			//Snake - Meat meatCollisions
+			meatCollision = s.getHead().getI() == m.getI() && s.getHead().getJ() == m.getJ();
+			if(meatCollision)
 			{
 				m.generateNewPosition(); 
 				score ++;
-				s.size ++;
-				s.size ++;
-				s.size ++;
+				s.increaseSize();
+				s.increaseSize();
+				s.increaseSize();
 				s.getBody().addFirst(s.getNextCell(dir));
 				s.getBody().addFirst(s.getNextCell(dir));
 				increaseSpeed();
 			}
 
-			//Snake - WallCollision
-			WallCollision = (s.getHead().getI() == 0 ||s.getHead().getJ() == 0 || s.getHead().getI() == (N_COLUMNS-1) || s.getHead().getJ() == (N_COLUMNS-1));
+			//Snake - wallCollision
+			wallCollision = (s.getHead().getI() == 0 ||s.getHead().getJ() == 0 || s.getHead().getI() == (N_COLUMNS-1) || s.getHead().getJ() == (N_COLUMNS-1));
 
-			gameOver = WallCollision || SnakeCollision;
+			gameOver = wallCollision || snakeCollision;
 
 		}
 		else if(restart)
@@ -99,10 +99,11 @@ public class Game implements Constants{
 
 		dir = Direction.UP;
 		lastDir = dir;
-		MeatCollision = false;
+		meatCollision = false;
 		gameOver = false;
 		score = 0;
 		restart = false;
+		speed = INITIAL_SPEED;
 	}
 
 	public Snake getS() {
@@ -136,14 +137,14 @@ public class Game implements Constants{
 
 
 
-	public boolean isMeatCollision() {
-		return MeatCollision;
+	public boolean ismeatCollision() {
+		return meatCollision;
 	}
 
 
 
-	public void setMeatCollision(boolean MeatCollision) {
-		this.MeatCollision = MeatCollision;
+	public void setmeatCollision(boolean meatCollision) {
+		this.meatCollision = meatCollision;
 	}
 
 
@@ -189,6 +190,46 @@ public class Game implements Constants{
 
 	public void setSpeed(int speed) {
 		this.speed = speed;
+	}
+
+
+	public boolean isMeatCollision() {
+		return meatCollision;
+	}
+
+
+	public void setMeatCollision(boolean meatCollision) {
+		this.meatCollision = meatCollision;
+	}
+
+
+	public boolean isWallCollision() {
+		return wallCollision;
+	}
+
+
+	public void setWallCollision(boolean wallCollision) {
+		this.wallCollision = wallCollision;
+	}
+
+
+	public boolean isSnakeCollision() {
+		return snakeCollision;
+	}
+
+
+	public void setSnakeCollision(boolean snakeCollision) {
+		this.snakeCollision = snakeCollision;
+	}
+
+
+	public BestScoreManager getBestScore() {
+		return bestScore;
+	}
+
+
+	public void setBestScore(BestScoreManager bestScore) {
+		this.bestScore = bestScore;
 	}
 
 

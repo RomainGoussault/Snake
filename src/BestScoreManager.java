@@ -5,12 +5,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 
-public class BestScore {
+public class BestScoreManager {
 
-	int best;
-	File file;
+	private int best;
+	private File file;
 
-	BestScore()
+	BestScoreManager()
 	{
 
 		 file = new File("Bscores.txt");
@@ -112,7 +112,7 @@ public class BestScore {
 	}
 	
 	public static void main(String[] args)
-	{ BestScore b = new BestScore();
+	{ BestScoreManager b = new BestScoreManager();
 	System.out.println(b.best);
 }
 	

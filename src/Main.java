@@ -30,7 +30,7 @@ public class Main extends JFrame implements Constants{
 
 
 		//On ajoute l'écouteur à notre composant
-		p.addKeyListener(new ClavierListener());
+		p.addKeyListener(new KeyboardsListener());
 		p.setFocusable(true);
 		p.requestFocusInWindow();
 
@@ -66,7 +66,7 @@ public class Main extends JFrame implements Constants{
 	}
 
 
-	class ClavierListener implements KeyListener{
+	class KeyboardsListener implements KeyListener{
 
 		public void keyPressed(KeyEvent event) {
 

@@ -8,8 +8,8 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 public class GamePannel extends JPanel  implements Constants{ 
 
-	
-	Game game;
+
+	private	Game game;
 
 	GamePannel(Game g)
 	{
@@ -28,7 +28,7 @@ public class GamePannel extends JPanel  implements Constants{
 
 
 	public void paintComponent(Graphics gg){
-//		//Print background
+		//		//Print background
 		gg.setColor(Color.WHITE);
 		gg.fillRect(0, 0, N_COLUMNS*CELL_SIZE*2, N_LINES*CELL_SIZE*2);
 
@@ -59,7 +59,7 @@ public class GamePannel extends JPanel  implements Constants{
 
 		printInfo(gg);
 
-		
+
 		if( game.isGameOver())
 		{
 			gameover(gg);
@@ -68,21 +68,21 @@ public class GamePannel extends JPanel  implements Constants{
 
 
 	}
-	
+
 	public void printInfo(Graphics gg)
 	{
 
 		//Print the info
 		gg.setColor(Color.BLUE);
-		gg.drawString("Score: " + game.score, 10, (N_LINES+1)*CELL_SIZE)	;
-	
+		gg.drawString("Score: " + game.getScore(), 10, (N_LINES+1)*CELL_SIZE)	;
+
 		gg.setColor(Color.BLUE);
 		gg.drawString("Size: " + game.getS().getSize(), (int) (0.3*(N_LINES+1)*CELL_SIZE), (N_LINES+1)*CELL_SIZE);
-		
+
 		gg.setColor(Color.BLUE);
 		gg.drawString("Speed: " + game.getSpeed(), (int) (0.6*(N_LINES+1)*CELL_SIZE), (N_LINES+1)*CELL_SIZE);
 	}
-	
+
 
 	public void gameover(Graphics g)
 	{
@@ -97,21 +97,17 @@ public class GamePannel extends JPanel  implements Constants{
 		g.setColor(Color.orange);
 		g.drawString("Score : " + game.getScore(), x, 3*y);
 		g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 40));
-		g.drawString("Best Score : " + game.bestScore.getBest(), x, 4*y);
-		
+		g.drawString("Best Score : " + game.getBestScore().getBest(), x, 4*y);
+
 
 		g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 30));
 		g.setColor(Color.gray);
 		g.drawString("Press 'r' to restart", x, 6*y);
 		g.drawString("Press 'x' to exit", x, (int) 7*y);
 
-		
+
 	}
 
 
 
-
-	public static void main(String[] args){
-		new Main();
-	}
 }

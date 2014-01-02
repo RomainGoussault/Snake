@@ -5,8 +5,8 @@ import java.util.LinkedList;
 
 public class Snake implements Constants{
 
-	protected int size;
-	protected LinkedList<Cell> body; // = new ArrayList<Position>();
+	private int size;
+	private LinkedList<Cell> body; // = new ArrayList<Position>();
 
 
 
@@ -82,6 +82,10 @@ public class Snake implements Constants{
 
 	public void setSize(int size) {
 		this.size = size;
+	}
+	
+	public void increaseSize() {
+		this.size++;
 	}
 
 
