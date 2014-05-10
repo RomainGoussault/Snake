@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import com.snake.model.Cell;
@@ -53,11 +54,9 @@ public class GamePannel extends JPanel  implements Constants{
 		gg.setColor(Color.RED);
 		gg.fillRect(game.getM().getX(),game.getM().getY() ,  CELL_SIZE, CELL_SIZE);
 
-
 		printInfo(gg);
 
-
-		if( game.isGameOver())
+		if(game.isGameOver())
 		{
 			gameover(gg);
 		}

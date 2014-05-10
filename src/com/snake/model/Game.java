@@ -1,9 +1,13 @@
 package com.snake.model;
 
+import java.awt.event.KeyEvent;
+
+import com.snake.ui.Main;
+import com.snake.ui.Observer;
 import com.snake.utils.BestScoreManager;
 import com.snake.utils.Constants;
 
-public class Game implements Constants{
+public class Game implements Constants, Observer{
 
 	private Snake s;
 	private Direction dir;
@@ -19,11 +23,11 @@ public class Game implements Constants{
 	private BestScoreManager bestScore;
 
 	public Game()
-	{
+	{	       
 		s = new Snake(INITIAL_SNAKE_SIZE);
 		m = new Meat();
 		m.generateNewPosition();
-
+		
 		dir = Direction.UP;
 		lastDir = dir;
 		meatCollision = false;
@@ -36,7 +40,7 @@ public class Game implements Constants{
 		bestScore = new BestScoreManager();
 	}
 
-	public void update()
+	public void updateModel()
 	{
 		//We don't allow reverse moves for the snake
 		boolean lateral = (lastDir == Direction.RIGHT && dir == Direction.LEFT) || (dir == Direction.RIGHT && lastDir == Direction.LEFT) ;
@@ -46,7 +50,7 @@ public class Game implements Constants{
 		{
 			if (!lateral && !vertical )
 			{
-				snakeCollision =   s.getBody().contains(s.getNextCell(dir));
+				snakeCollision = s.getBody().contains(s.getNextCell(dir));
 				s.move(dir);
 				lastDir = dir;
 			}
@@ -106,20 +110,45 @@ public class Game implements Constants{
 		speed = INITIAL_SPEED;
 	}
 
+	@Override
+	public void update(KeyEvent keyEvent) {
+		//System.out.println(event.getKeyCode());
+		if (keyEvent.getKeyCode() == 37)
+		{
+			setDir(Direction.LEFT);
+		}
+
+		if (keyEvent.getKeyCode() == 39)
+		{
+			setDir(Direction.RIGHT);
+
+		}
+		if (keyEvent.getKeyCode() == 38)
+		{
+			setDir(Direction.UP);
+		}
+		if (keyEvent.getKeyCode() == 40)
+		{
+			setDir(Direction.DOWN);
+		}
+
+		if (keyEvent.getKeyCode() == 82) //R
+		{
+			setRestart(true);
+		}
+	}
+	
 	public Snake getS() {
 		return s;
 	}
-
 
 	public void setS(Snake s) {
 		this.s = s;
 	}
 
-
 	public Direction getDir() {
 		return dir;
 	}
-
 
 	public void setDir(Direction dir) {
 		this.dir = dir;
@@ -204,4 +233,5 @@ public class Game implements Constants{
 	public void setBestScore(BestScoreManager bestScore) {
 		this.bestScore = bestScore;
 	}
+
 }

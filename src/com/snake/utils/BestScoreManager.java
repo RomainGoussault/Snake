@@ -5,7 +5,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-
 public class BestScoreManager {
 
 	private int best;
@@ -25,9 +24,8 @@ public class BestScoreManager {
 			while((i = fr.read()) != -1)
 				str += (char)i;
 
-			best =   Integer.parseInt(str);
+			best =  Integer.parseInt(str);
 			//System.out.println(best);
-
 
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -61,17 +59,12 @@ public class BestScoreManager {
 	}
 	public void writeNewScore()
 	{
-
-
 		FileWriter fw = null;
 		try {
-
 			fw = new FileWriter(file);
 			String str ="" + best;
 			fw.write(str);
 			fw.close();
-
-
 
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -93,7 +86,6 @@ public class BestScoreManager {
 				e.printStackTrace();
 			}
 		}
-
 	}
 
 	public int getBest() {
