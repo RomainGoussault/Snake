@@ -5,7 +5,6 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import com.snake.model.Cell;
@@ -88,7 +87,7 @@ public class GamePannel extends JPanel  implements Constants{
 		g.setColor(Color.orange);
 		g.drawString("Score : " + game.getScore(), x, 3*y);
 		g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 40));
-		g.drawString("Best Score : " + game.getBestScore().getBest(), x, 4*y);
+		g.drawString("Best Score : " + game.getBestScoreManager().getBestScore(), x, 4*y);
 
 		g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 30));
 		g.setColor(Color.gray);

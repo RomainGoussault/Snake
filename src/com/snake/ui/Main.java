@@ -1,16 +1,9 @@
 package com.snake.ui;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.io.IOException;
-import java.util.logging.FileHandler;
-import java.util.logging.Logger;
-import java.util.logging.SimpleFormatter;
-
 import javax.swing.JFrame;
 
 import com.snake.controller.Controller;
-import com.snake.model.Direction;
 import com.snake.model.Game;
 import com.snake.utils.Constants;
 import com.snake.utils.Observer;

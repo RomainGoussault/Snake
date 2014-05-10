@@ -1,16 +1,16 @@
-package com.snake.utils;
+package com.snake.score;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class BestScoreManager {
+public class FileBestScoreManager implements BestScoreManager{
 
 	private int best;
 	private File file;
 
-	public BestScoreManager()
+	public FileBestScoreManager()
 	{
 		file = new File("Bscores.txt");
 		FileReader fr =null;
@@ -19,7 +19,7 @@ public class BestScoreManager {
 			fr = new FileReader(file);
 			String str = "";
 			int i = 0;
-			//Lecture des données
+			//Reading data
 
 			while((i = fr.read()) != -1)
 				str += (char)i;
@@ -88,16 +88,16 @@ public class BestScoreManager {
 		}
 	}
 
-	public int getBest() {
+	public int getBestScore() {
 		return best;
 	}
 
-	public void setBest(int best) {
+	public void setBestScore(int best) {
 		this.best = best;
 	}
 
 	public static void main(String[] args)
-	{ BestScoreManager b = new BestScoreManager();
+	{ FileBestScoreManager b = new FileBestScoreManager();
 	System.out.println(b.best);
 	}
 }

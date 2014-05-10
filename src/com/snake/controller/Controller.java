@@ -4,8 +4,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
-import com.snake.model.Direction;
-import com.snake.model.Game;
 import com.snake.utils.Observable;
 import com.snake.utils.Observer;
 

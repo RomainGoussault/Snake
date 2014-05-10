@@ -2,8 +2,8 @@ package com.snake.model;
 
 import java.awt.event.KeyEvent;
 
-import com.snake.ui.Main;
-import com.snake.utils.BestScoreManager;
+import com.snake.score.BestScoreManager;
+import com.snake.score.FileBestScoreManager;
 import com.snake.utils.Constants;
 import com.snake.utils.Observer;
 
@@ -20,7 +20,7 @@ public class Game implements Constants, Observer{
 	private boolean gameOver;
 	private boolean restart;
 	private int speed; //speed from 0 -100
-	private BestScoreManager bestScore;
+	private BestScoreManager bestScoreManager;
 
 	public Game()
 	{	       
@@ -37,7 +37,7 @@ public class Game implements Constants, Observer{
 		speed = INITIAL_SPEED;
 		wallCollision = false; 
 		snakeCollision = false;
-		bestScore = new BestScoreManager();
+		bestScoreManager = new FileBestScoreManager();
 	}
 
 	public void updateModel()
@@ -84,7 +84,7 @@ public class Game implements Constants, Observer{
 		}
 		else
 		{
-			bestScore.update(score);	
+			bestScoreManager.update(score);	
 		}
 	}
 
@@ -226,12 +226,7 @@ public class Game implements Constants, Observer{
 		this.snakeCollision = snakeCollision;
 	}
 
-	public BestScoreManager getBestScore() {
-		return bestScore;
+	public BestScoreManager getBestScoreManager() {
+		return bestScoreManager;
 	}
-
-	public void setBestScore(BestScoreManager bestScore) {
-		this.bestScore = bestScore;
-	}
-
 }
