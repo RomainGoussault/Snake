@@ -3,9 +3,9 @@ package com.snake.model;
 import java.awt.event.KeyEvent;
 
 import com.snake.ui.Main;
-import com.snake.ui.Observer;
 import com.snake.utils.BestScoreManager;
 import com.snake.utils.Constants;
+import com.snake.utils.Observer;
 
 public class Game implements Constants, Observer{
 

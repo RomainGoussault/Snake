@@ -1,4 +1,4 @@
-package com.snake.ui;
+package com.snake.utils;
 
 import java.awt.event.KeyEvent;
 

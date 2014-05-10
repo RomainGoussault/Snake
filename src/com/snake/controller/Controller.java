@@ -6,7 +6,8 @@ import java.util.ArrayList;
 
 import com.snake.model.Direction;
 import com.snake.model.Game;
-import com.snake.ui.Observer;
+import com.snake.utils.Observable;
+import com.snake.utils.Observer;
 
 public class Controller implements KeyListener, Observable
 {

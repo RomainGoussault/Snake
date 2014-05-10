@@ -13,6 +13,7 @@ import com.snake.controller.Controller;
 import com.snake.model.Direction;
 import com.snake.model.Game;
 import com.snake.utils.Constants;
+import com.snake.utils.Observer;
 
 @SuppressWarnings("serial")
 public class Main extends JFrame implements Constants, Observer{
