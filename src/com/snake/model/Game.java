@@ -27,7 +27,7 @@ public class Game implements Constants, Observer{
 		snake = new Snake(INITIAL_SNAKE_SIZE);
 		meat = new Meat();
 		meat.generateNewPosition();
-		
+
 		direction = Direction.UP;
 		lastDir = direction;
 		meatCollision = false;
@@ -76,7 +76,9 @@ public class Game implements Constants, Observer{
 		}
 
 		//Snake - wallCollision
-		wallCollision = (snake.getHead().getI() == 0 ||snake.getHead().getJ() == 0 || snake.getHead().getI() == (N_COLUMNS-1) || snake.getHead().getJ() == (N_COLUMNS-1));
+		wallCollision = (snake.getHead().getI() == 0 || snake.getHead().getJ() == 0
+				|| snake.getHead().getI() == (N_COLUMNS-1) || snake.getHead().getJ() == (N_COLUMNS-1));
+		
 		gameOver = wallCollision || snakeCollision;
 	}
 
@@ -98,7 +100,6 @@ public class Game implements Constants, Observer{
 	{
 		//speed = 100 - 1/speed ;
 		speed= (int) (speed + (float) (100/speed)) ;
-
 	}
 
 	public void restart()
@@ -143,7 +144,7 @@ public class Game implements Constants, Observer{
 			setRestart(true);
 		}
 	}
-	
+
 	public Snake getS() {
 		return snake;
 	}
