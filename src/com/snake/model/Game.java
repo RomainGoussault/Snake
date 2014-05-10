@@ -9,10 +9,10 @@ import com.snake.utils.Observer;
 
 public class Game implements Constants, Observer{
 
-	private Snake s;
-	private Direction dir;
+	private Snake snake;
+	private Direction direction;
 	private Direction lastDir;
-	private Meat m;
+	private Meat meat;
 	private boolean meatCollision;
 	private boolean wallCollision;
 	private boolean snakeCollision;
@@ -24,12 +24,12 @@ public class Game implements Constants, Observer{
 
 	public Game()
 	{	       
-		s = new Snake(INITIAL_SNAKE_SIZE);
-		m = new Meat();
-		m.generateNewPosition();
+		snake = new Snake(INITIAL_SNAKE_SIZE);
+		meat = new Meat();
+		meat.generateNewPosition();
 		
-		dir = Direction.UP;
-		lastDir = dir;
+		direction = Direction.UP;
+		lastDir = direction;
 		meatCollision = false;
 		gameOver = false;
 		score = 0;
@@ -43,48 +43,54 @@ public class Game implements Constants, Observer{
 	public void updateModel()
 	{
 		//We don't allow reverse moves for the snake
-		boolean lateral = (lastDir == Direction.RIGHT && dir == Direction.LEFT) || (dir == Direction.RIGHT && lastDir == Direction.LEFT) ;
-		boolean vertical = (lastDir == Direction.UP && dir == Direction.DOWN) || (dir == Direction.UP && lastDir == Direction.DOWN) ;
+		boolean lateral = (lastDir == Direction.RIGHT && direction == Direction.LEFT)
+				|| (direction == Direction.RIGHT && lastDir == Direction.LEFT) ;
+		boolean vertical = (lastDir == Direction.UP && direction == Direction.DOWN)
+				|| (direction == Direction.UP && lastDir == Direction.DOWN) ;
 
 		if	(!gameOver)
 		{
-			if (!lateral && !vertical )
-			{
-				snakeCollision = s.getBody().contains(s.getNextCell(dir));
-				s.move(dir);
-				lastDir = dir;
-			}
-			else
-			{
-				dir=lastDir;
-				s.move(dir);
-			}	
-
-			//Snake - Meat meatCollisions
-			meatCollision = s.getHead().getI() == m.getI() && s.getHead().getJ() == m.getJ();
-			if(meatCollision)
-			{
-				m.generateNewPosition(); 
-				score ++;
-				s.increaseSize();
-				s.increaseSize();
-				s.increaseSize();
-				s.getBody().addFirst(s.getNextCell(dir));
-				s.getBody().addFirst(s.getNextCell(dir));
-				increaseSpeed();
-			}
-
-			//Snake - wallCollision
-			wallCollision = (s.getHead().getI() == 0 ||s.getHead().getJ() == 0 || s.getHead().getI() == (N_COLUMNS-1) || s.getHead().getJ() == (N_COLUMNS-1));
-			gameOver = wallCollision || snakeCollision;
+			moveSnake(lateral, vertical);	
+			handleCollision();
 		}
 		else if(restart)
 		{
-			this.restart();
+			restart();
 		}
 		else
 		{
 			bestScoreManager.update(score);	
+		}
+	}
+
+	private void handleCollision()
+	{
+		//Snake - Meat meatCollisions
+		meatCollision = snake.getHead().getI() == meat.getI() && snake.getHead().getJ() == meat.getJ();
+		if(meatCollision)
+		{
+			meat.generateNewPosition(); 
+			score ++;
+			snake.grow(2, direction);
+			increaseSpeed();
+		}
+
+		//Snake - wallCollision
+		wallCollision = (snake.getHead().getI() == 0 ||snake.getHead().getJ() == 0 || snake.getHead().getI() == (N_COLUMNS-1) || snake.getHead().getJ() == (N_COLUMNS-1));
+		gameOver = wallCollision || snakeCollision;
+	}
+
+	private void moveSnake(boolean lateral, boolean vertical) {
+		if (!lateral && !vertical )
+		{
+			snakeCollision = snake.getBody().contains(snake.getNextCell(direction));
+			snake.move(direction);
+			lastDir = direction;
+		}
+		else
+		{
+			direction=lastDir;
+			snake.move(direction);
 		}
 	}
 
@@ -97,12 +103,12 @@ public class Game implements Constants, Observer{
 
 	public void restart()
 	{
-		s = new Snake(INITIAL_SNAKE_SIZE);
-		m = new Meat();
-		m.generateNewPosition();
+		snake = new Snake(INITIAL_SNAKE_SIZE);
+		meat = new Meat();
+		meat.generateNewPosition();
 
-		dir = Direction.UP;
-		lastDir = dir;
+		direction = Direction.UP;
+		lastDir = direction;
 		meatCollision = false;
 		gameOver = false;
 		score = 0;
@@ -139,27 +145,27 @@ public class Game implements Constants, Observer{
 	}
 	
 	public Snake getS() {
-		return s;
+		return snake;
 	}
 
 	public void setS(Snake s) {
-		this.s = s;
+		this.snake = s;
 	}
 
 	public Direction getDir() {
-		return dir;
+		return direction;
 	}
 
 	public void setDir(Direction dir) {
-		this.dir = dir;
+		this.direction = dir;
 	}
 
 	public Meat getM() {
-		return m;
+		return meat;
 	}
 
 	public void setM(Meat m) {
-		this.m = m;
+		this.meat = m;
 	}
 
 	public boolean ismeatCollision() {

@@ -13,7 +13,7 @@ public class Snake implements Constants{
 		size = 3;
 		body= new LinkedList<Cell>();
 		int i;
-		
+
 		for(i = 0; i<size; i++)
 		{
 			body.add(new Cell(i,2));
@@ -34,7 +34,14 @@ public class Snake implements Constants{
 		}
 	}
 
-
+	public void grow(int noOfCells, Direction direction)
+	{
+		for(int i = 0; i< noOfCells; i++)
+		{
+			getBody().addFirst(getNextCell(direction));
+			size++;
+		}
+	}
 	public Cell getNextCell(Direction dir)
 	{
 		Cell head = this.getHead();
@@ -73,12 +80,18 @@ public class Snake implements Constants{
 	public void setSize(int size) {
 		this.size = size;
 	}
-	
+
 	public void increaseSize() {
 		this.size++;
 	}
 
+	public void increaseSize(int noOfCells) {
 
+		for(int i = 0; i< noOfCells; i++)
+		{
+			this.size++;
+		}
+	}
 	public LinkedList<Cell> getBody() {
 		return body;
 	}
