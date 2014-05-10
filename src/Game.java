@@ -31,16 +31,14 @@ public class Game implements Constants{
 		bestScore = new BestScoreManager();
 	}
 
-
-	void update() {
-		
+	void update()
+	{
 		//We don't allow reverse moves for the snake
 		boolean lateral = (lastDir == Direction.RIGHT && dir == Direction.LEFT) || (dir == Direction.RIGHT && lastDir == Direction.LEFT) ;
 		boolean vertical = (lastDir == Direction.UP && dir == Direction.DOWN) || (dir == Direction.UP && lastDir == Direction.DOWN) ;
 
 		if	(!gameOver)
 		{
-
 			if (!lateral && !vertical )
 			{
 				snakeCollision =   s.getBody().contains(s.getNextCell(dir));
@@ -52,7 +50,6 @@ public class Game implements Constants{
 				dir=lastDir;
 				s.move(dir);
 			}	
-
 
 			//Snake - Meat meatCollisions
 			meatCollision = s.getHead().getI() == m.getI() && s.getHead().getJ() == m.getJ();
@@ -70,9 +67,7 @@ public class Game implements Constants{
 
 			//Snake - wallCollision
 			wallCollision = (s.getHead().getI() == 0 ||s.getHead().getJ() == 0 || s.getHead().getI() == (N_COLUMNS-1) || s.getHead().getJ() == (N_COLUMNS-1));
-
 			gameOver = wallCollision || snakeCollision;
-
 		}
 		else if(restart)
 		{
@@ -80,7 +75,7 @@ public class Game implements Constants{
 		}
 		else
 		{
-		bestScore.update(score);	
+			bestScore.update(score);	
 		}
 	}
 
@@ -88,7 +83,7 @@ public class Game implements Constants{
 	{
 		//speed = 100 - 1/speed ;
 		speed= (int) (speed + (float) (100/speed)) ;
-		
+
 	}
 
 	public void restart()
@@ -125,114 +120,83 @@ public class Game implements Constants{
 		this.dir = dir;
 	}
 
-
 	public Meat getM() {
 		return m;
 	}
-
 
 	public void setM(Meat m) {
 		this.m = m;
 	}
 
-
-
 	public boolean ismeatCollision() {
 		return meatCollision;
 	}
-
-
 
 	public void setmeatCollision(boolean meatCollision) {
 		this.meatCollision = meatCollision;
 	}
 
-
 	public int getScore() {
 		return score;
 	}
-
-
 
 	public void setScore(int score) {
 		this.score = score;
 	}
 
-
-
 	public boolean isGameOver() {
 		return gameOver;
 	}
-
-
 
 	public void setGameOver(boolean gameOver) {
 		this.gameOver = gameOver;
 	}
 
-
-
-
 	public boolean isRestart() {
 		return restart;
 	}
-
 
 	public void setRestart(boolean restart) {
 		this.restart = restart;
 	}
 
-
 	public int getSpeed() {
 		return speed;
 	}
-
 
 	public void setSpeed(int speed) {
 		this.speed = speed;
 	}
 
-
 	public boolean isMeatCollision() {
 		return meatCollision;
 	}
-
 
 	public void setMeatCollision(boolean meatCollision) {
 		this.meatCollision = meatCollision;
 	}
 
-
 	public boolean isWallCollision() {
 		return wallCollision;
 	}
-
 
 	public void setWallCollision(boolean wallCollision) {
 		this.wallCollision = wallCollision;
 	}
 
-
 	public boolean isSnakeCollision() {
 		return snakeCollision;
 	}
-
 
 	public void setSnakeCollision(boolean snakeCollision) {
 		this.snakeCollision = snakeCollision;
 	}
 
-
 	public BestScoreManager getBestScore() {
 		return bestScore;
 	}
 
-
 	public void setBestScore(BestScoreManager bestScore) {
 		this.bestScore = bestScore;
 	}
-
-
-
-
 }
