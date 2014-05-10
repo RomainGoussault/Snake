@@ -1,14 +1,9 @@
 import java.util.LinkedList;
 
-
-
-
 public class Snake implements Constants{
 
 	private int size;
 	private LinkedList<Cell> body; // = new ArrayList<Position>();
-
-
 
 	Snake()
 	{
@@ -16,19 +11,15 @@ public class Snake implements Constants{
 		body= new LinkedList<Cell>();
 		int i;
 		
-		
-		
 		for(i = 0; i<size; i++)
 		{
 			body.add(new Cell(i,2));
 
 		}
-
 	}
 
 	Snake(int s)
 	{
-		
 		size = s;
 		body= new LinkedList<Cell>();
 		int i;
@@ -38,7 +29,6 @@ public class Snake implements Constants{
 			body.add(new Cell(i0 + i,(int) (N_LINES/2)));
 
 		}
-		
 	}
 
 
@@ -48,7 +38,6 @@ public class Snake implements Constants{
 		int i = head.getI();
 		int j = head.getJ();
 
-		
 		switch (dir)
 		{
 		case UP:
@@ -65,10 +54,8 @@ public class Snake implements Constants{
 
 		default:
 			return new Cell(i,j);
-
 		}
 	}
-
 
 	public void move(Direction dir)
 	{
@@ -105,5 +92,4 @@ public class Snake implements Constants{
 	public Cell getHead() {
 		return body.getFirst();
 	}
-
 }

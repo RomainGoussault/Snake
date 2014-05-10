@@ -8,7 +8,6 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 public class GamePannel extends JPanel  implements Constants{ 
 
-
 	private	Game game;
 
 	GamePannel(Game g)
@@ -18,14 +17,7 @@ public class GamePannel extends JPanel  implements Constants{
 		this.setLayout(new GridLayout(N_COLUMNS,N_LINES));
 		game = g;
 		this.setPreferredSize(new Dimension(N_COLUMNS*CELL_SIZE,(N_COLUMNS+2)*CELL_SIZE));
-
-
 	}
-
-
-
-
-
 
 	public void paintComponent(Graphics gg){
 		//		//Print background
@@ -41,7 +33,6 @@ public class GamePannel extends JPanel  implements Constants{
 		gg.fillRect(0,(N_COLUMNS-1)* CELL_SIZE,N_COLUMNS* CELL_SIZE,CELL_SIZE);
 		gg.fillRect((N_COLUMNS-1)* CELL_SIZE,0, CELL_SIZE,N_COLUMNS*CELL_SIZE);
 		gg.fillRect(0,0, CELL_SIZE,N_COLUMNS*CELL_SIZE);
-
 
 		//Print the snake
 		gg.setColor(Color.GREEN);
@@ -64,14 +55,10 @@ public class GamePannel extends JPanel  implements Constants{
 		{
 			gameover(gg);
 		}
-
-
-
 	}
 
 	public void printInfo(Graphics gg)
 	{
-
 		//Print the info
 		gg.setColor(Color.BLUE);
 		gg.drawString("Score: " + game.getScore(), 10, (N_LINES+1)*CELL_SIZE)	;
@@ -82,7 +69,6 @@ public class GamePannel extends JPanel  implements Constants{
 		gg.setColor(Color.BLUE);
 		gg.drawString("Speed: " + game.getSpeed(), (int) (0.6*(N_LINES+1)*CELL_SIZE), (N_LINES+1)*CELL_SIZE);
 	}
-
 
 	public void gameover(Graphics g)
 	{
@@ -99,15 +85,9 @@ public class GamePannel extends JPanel  implements Constants{
 		g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 40));
 		g.drawString("Best Score : " + game.getBestScore().getBest(), x, 4*y);
 
-
 		g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 30));
 		g.setColor(Color.gray);
 		g.drawString("Press 'r' to restart", x, 6*y);
 		g.drawString("Press 'x' to exit", x, (int) 7*y);
-
-
 	}
-
-
-
 }

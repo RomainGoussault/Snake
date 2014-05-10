@@ -1,7 +1,4 @@
-
 public interface Constants {
-
-
 	public final static int N_COLUMNS = 50;
 	public final static int N_LINES = 50;
 	public final static int CELL_SIZE = 18;

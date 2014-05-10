@@ -12,22 +12,20 @@ public class BestScoreManager {
 
 	BestScoreManager()
 	{
-
-		 file = new File("Bscores.txt");
+		file = new File("Bscores.txt");
 		FileReader fr =null;
 
 		try {
-			  fr = new FileReader(file);
-		      String str = "";
-		      int i = 0;
-		      //Lecture des données
-		     
-		      while((i = fr.read()) != -1)
-		        str += (char)i;
-			
+			fr = new FileReader(file);
+			String str = "";
+			int i = 0;
+			//Lecture des données
+
+			while((i = fr.read()) != -1)
+				str += (char)i;
+
 			best =   Integer.parseInt(str);
 			//System.out.println(best);
-
 
 
 		} catch (FileNotFoundException e) {
@@ -51,30 +49,28 @@ public class BestScoreManager {
 			}
 		}
 	}
-	
-	
-	
+
 	public void update(int score)
 	{
 		if(score>best)
-			{
+		{
 			best = score;
 			this.writeNewScore();
-			}
+		}
 	}
 	public void writeNewScore()
 	{
-	
+
 
 		FileWriter fw = null;
 		try {
-			
+
 			fw = new FileWriter(file);
 			String str ="" + best;
 			fw.write(str);
 			fw.close();
 
-		
+
 
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -96,24 +92,19 @@ public class BestScoreManager {
 				e.printStackTrace();
 			}
 		}
-		
+
 	}
-
-
 
 	public int getBest() {
 		return best;
 	}
 
-
-
 	public void setBest(int best) {
 		this.best = best;
 	}
-	
+
 	public static void main(String[] args)
 	{ BestScoreManager b = new BestScoreManager();
 	System.out.println(b.best);
-}
-	
+	}
 }

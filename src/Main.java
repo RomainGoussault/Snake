@@ -7,12 +7,10 @@ import javax.swing.JFrame;
 public class Main extends JFrame implements Constants{
 
 	final protected GamePannel p;
-	protected Game g;
-
+	final protected Game g;
 
 	public Main()
 	{   
-
 		g = new Game();
 		p  = new GamePannel(g);
 		this.setTitle("Snake");
@@ -24,47 +22,26 @@ public class Main extends JFrame implements Constants{
 		this.pack();
 		this.setVisible(true);  
 
-
 		p.setBackground(Color.white);
-
-
 
 		//On ajoute l'écouteur à notre composant
 		p.addKeyListener(new KeyboardsListener());
 		p.setFocusable(true);
 		p.requestFocusInWindow();
 
-
-		//		Thread thread = new Thread(new Runnable() 
-		//		{                  
-		//			@Override
-		//			public void run() 
-		//			{
-		//				while (true) { 
-		//					g.update();
-		//					p.repaint();
-		//					try {
-		//						Thread.sleep(100-g.getSpeed());
-		//					} catch (InterruptedException e) {
-		//						//
-		//					}
-		//				}                        
-		//			}
-		//		});
-
-		while (true) { 
+		while (true)
+		{ 
 			g.update();
 			p.repaint();
-			try {
+			try
+			{
 				Thread.sleep( 100-g.getSpeed());
-			} catch (InterruptedException e) {
-				//
 			}
-			//thread.start();
+			catch (InterruptedException e) 
+			{
+			}
 		}      
-
 	}
-
 
 	class KeyboardsListener implements KeyListener{
 
@@ -106,8 +83,6 @@ public class Main extends JFrame implements Constants{
 		public void keyTyped(KeyEvent event) {
 		}   	
 	}   
-
-
 
 	public static void main(String[] args){
 		new Main();
