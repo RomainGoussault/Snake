@@ -71,7 +71,7 @@ public class Game implements Constants, Observer{
 		{
 			meat.generateNewPosition(); 
 			score ++;
-			snake.grow(2, direction);
+			snake.grow(CELL_GROWTH_PER_MEAT_EATEN, direction);
 			increaseSpeed();
 		}
 

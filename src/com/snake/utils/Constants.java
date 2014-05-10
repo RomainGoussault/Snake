@@ -11,4 +11,5 @@ public interface Constants {
 	public static final int SNAKE_BODY = 3;
 	public static final int SNAKE_TAIL = 4;
 	public static final int FOOD = 5;
+	public static final int CELL_GROWTH_PER_MEAT_EATEN = 3;
 }
