@@ -1,6 +1,10 @@
+package com.snake.model;
+
+import com.snake.utils.Constants;
+
 public class Meat extends Cell implements Constants {
 
-	Meat(){
+	public Meat(){
 		super();
 	}
 

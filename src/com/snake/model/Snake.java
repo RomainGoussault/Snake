@@ -1,11 +1,14 @@
+package com.snake.model;
 import java.util.LinkedList;
+
+import com.snake.utils.Constants;
 
 public class Snake implements Constants{
 
 	private int size;
 	private LinkedList<Cell> body; // = new ArrayList<Position>();
 
-	Snake()
+	public Snake()
 	{
 		size = 3;
 		body= new LinkedList<Cell>();
@@ -18,7 +21,7 @@ public class Snake implements Constants{
 		}
 	}
 
-	Snake(int s)
+	public Snake(int s)
 	{
 		size = s;
 		body= new LinkedList<Cell>();

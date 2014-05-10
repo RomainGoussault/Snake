@@ -1,3 +1,4 @@
+package com.snake.utils;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -10,7 +11,7 @@ public class BestScoreManager {
 	private int best;
 	private File file;
 
-	BestScoreManager()
+	public BestScoreManager()
 	{
 		file = new File("Bscores.txt");
 		FileReader fr =null;

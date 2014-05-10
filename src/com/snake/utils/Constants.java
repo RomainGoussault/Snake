@@ -1,3 +1,4 @@
+package com.snake.utils;
 public interface Constants {
 	public final static int N_COLUMNS = 50;
 	public final static int N_LINES = 50;

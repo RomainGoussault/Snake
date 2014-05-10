@@ -1,3 +1,7 @@
+package com.snake.model;
+
+import com.snake.utils.Constants;
+
 public class Cell implements Constants{
 
 	// Current position

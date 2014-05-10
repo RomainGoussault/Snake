@@ -1,9 +1,15 @@
+package com.snake.ui;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridLayout;
+
 import javax.swing.JPanel;
+
+import com.snake.model.Cell;
+import com.snake.model.Game;
+import com.snake.utils.Constants;
 
 @SuppressWarnings("serial")
 public class GamePannel extends JPanel  implements Constants{ 

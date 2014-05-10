@@ -1,3 +1,8 @@
+package com.snake.model;
+
+import com.snake.utils.BestScoreManager;
+import com.snake.utils.Constants;
+
 public class Game implements Constants{
 
 	private Snake s;
@@ -13,7 +18,7 @@ public class Game implements Constants{
 	private int speed; //speed from 0 -100
 	private BestScoreManager bestScore;
 
-	Game()
+	public Game()
 	{
 		s = new Snake(INITIAL_SNAKE_SIZE);
 		m = new Meat();
@@ -31,7 +36,7 @@ public class Game implements Constants{
 		bestScore = new BestScoreManager();
 	}
 
-	void update()
+	public void update()
 	{
 		//We don't allow reverse moves for the snake
 		boolean lateral = (lastDir == Direction.RIGHT && dir == Direction.LEFT) || (dir == Direction.RIGHT && lastDir == Direction.LEFT) ;

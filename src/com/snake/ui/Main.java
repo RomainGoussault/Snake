@@ -1,7 +1,13 @@
+package com.snake.ui;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+
 import javax.swing.JFrame;
+
+import com.snake.model.Direction;
+import com.snake.model.Game;
+import com.snake.utils.Constants;
 
 @SuppressWarnings("serial")
 public class Main extends JFrame implements Constants{
@@ -24,7 +30,6 @@ public class Main extends JFrame implements Constants{
 
 		p.setBackground(Color.white);
 
-		//On ajoute l'écouteur à notre composant
 		p.addKeyListener(new KeyboardsListener());
 		p.setFocusable(true);
 		p.requestFocusInWindow();
